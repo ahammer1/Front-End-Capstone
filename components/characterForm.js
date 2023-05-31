@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
+import { propTypes } from 'react-bootstrap/esm/Image';
 import Button from 'react-bootstrap/Button';
 import { useAuth } from '../utils/context/authContext';
 import { createCharacter, updateCharacter } from '../api/CharacterData';
@@ -11,7 +12,7 @@ const initialState = {
   character_name: '',
   image: '',
 };
-function CharacterForm({ obj }) {
+function CharacterForm({ gameId, obj }) {
   const [formInput, setFormInput] = useState(initialState);
   const { user } = useAuth();
   const router = useRouter();
@@ -37,11 +38,11 @@ function CharacterForm({ obj }) {
       // route to character..?
         .then(() => router.push(`/Game/${obj.firebaseKey}`));
     } else {
-      const payload = { ...formInput, uid: user.uid };
+      const payload = { ...formInput, uid: user.uid, game_id: gameId };
       createCharacter(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateCharacter(patchPayload).then(() => {
-          router.push(`/Game/${obj.firebaseKey}`);
+          router.push(`/Game/${gameId}`);
         });
       });
     }
@@ -84,6 +85,7 @@ function CharacterForm({ obj }) {
 export default CharacterForm;
 
 CharacterForm.propTypes = {
+  gameId: propTypes.string,
   obj: PropTypes.shape({
     character_name: PropTypes.string,
     firebaseKey: PropTypes.string,
@@ -92,4 +94,5 @@ CharacterForm.propTypes = {
 
 CharacterForm.defaultProps = {
   obj: initialState,
+  gameId: '',
 };
