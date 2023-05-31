@@ -70,7 +70,7 @@ const updateCharacter = (payload) => new Promise((resolve, reject) => {
 });
 
 const getCharacterGames = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/games.json?orderBy="character_id"&equalTo="${firebaseKey}"`, {
+  fetch(`${dbUrl}/games.json?orderBy="game_id"&equalTo="${firebaseKey}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

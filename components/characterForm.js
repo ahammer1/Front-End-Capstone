@@ -35,13 +35,13 @@ function CharacterForm({ obj }) {
     if (obj.firebaseKey) {
       updateCharacter(formInput)
       // route to character..?
-        .then(() => router.push(`/characters${obj.firebaseKey}`));
+        .then(() => router.push(`/Game/${obj.firebaseKey}`));
     } else {
       const payload = { ...formInput, uid: user.uid };
       createCharacter(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateCharacter(patchPayload).then(() => {
-          router.push('/');
+          router.push(`/Game/${obj.firebaseKey}`);
         });
       });
     }
