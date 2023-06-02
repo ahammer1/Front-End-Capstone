@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Card from 'react-bootstrap/Card';
-import viewCharacterDetails from '../../api/mergedData';
+import { getSingleCharacter } from '../../api/CharacterData';
 
 export default function ViewCharacter() {
   const [characterDetails, setCharacterDetails] = useState({});
@@ -10,7 +10,7 @@ export default function ViewCharacter() {
   const { firebaseKey } = router.query;
 
   useEffect(() => {
-    viewCharacterDetails(firebaseKey).then(setCharacterDetails);
+    getSingleCharacter(firebaseKey).then(setCharacterDetails);
   }, [firebaseKey]);
 
   return (
