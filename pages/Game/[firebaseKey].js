@@ -17,7 +17,7 @@ export default function ViewGame() {
     viewGameDetails(firebaseKey).then(setGameDetails);
   }, [firebaseKey]);
 
-  console.warn({ gameDetails });
+  // console.warn({ gameDetails });
 
   return (
     <>
