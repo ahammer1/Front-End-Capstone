@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 import { Button } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import CharacterCard from '../../components/CharacterCard';
-import viewGameDetails from '../../api/mergedData';
+import { viewGameDetails } from '../../api/mergedData';
 
 export default function ViewGame() {
   const [gameDetails, setGameDetails] = useState({});
