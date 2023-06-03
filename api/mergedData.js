@@ -1,4 +1,5 @@
-import { getCharacterGames } from './CharacterData';
+import { getCharacterGames, getSingleCharacter } from './CharacterData';
+import { getCommentCharacters } from './commentData';
 import { getSingleGame } from './gameData';
 
 const viewGameDetails = (gamesFirebaseKey) => new Promise((resolve, reject) => {
@@ -8,4 +9,11 @@ const viewGameDetails = (gamesFirebaseKey) => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
-export default viewGameDetails;
+const viewCharacterDetails = (charactersFirebaseKey) => new Promise((resolve, reject) => {
+  Promise.all([getSingleCharacter(charactersFirebaseKey), getCommentCharacters(charactersFirebaseKey)])
+    .then(([characterObject, commentCharactersArray]) => {
+      resolve({ ...characterObject, comments: commentCharactersArray });
+    }).catch((error) => reject(error));
+});
+
+export { viewGameDetails, viewCharacterDetails };
