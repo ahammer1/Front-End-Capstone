@@ -75,7 +75,7 @@ function CharacterForm({ gameId, obj }) {
         />
       </FloatingLabel>
 
-      <Button variant="primary" type="submit">
+      <Button variant="dark" type="submit">
         Submit
       </Button>
     </Form>

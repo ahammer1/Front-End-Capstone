@@ -21,12 +21,12 @@ function GameCard({ gameObj, onUpdate }) {
         <p className="card-text bold">{gameObj.console}</p>
         <p className="card-text bold">{gameObj.description}</p>
         <Link href={`/Game/${gameObj.firebaseKey}`} passHref>
-          <Button variant="primary" className="m-2">VIEW</Button>
+          <Button variant="dark" className="m-2">VIEW</Button>
         </Link>
         <Link href={`/Game/Edit/${gameObj.firebaseKey}`} passHref>
-          <Button variant="info">EDIT</Button>
+          <Button variant="dark">EDIT</Button>
         </Link>
-        <Button variant="danger" onClick={deleteThisGame} className="m-2">
+        <Button variant="dark" onClick={deleteThisGame} className="m-2">
           DELETE
         </Button>
       </Card.Body>

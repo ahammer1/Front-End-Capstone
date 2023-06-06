@@ -18,12 +18,12 @@ function CharacterCard({ characterObj, onUpdate }) {
       <Card.Body>
         <Card.Title>{characterObj.character_name}</Card.Title>
         <Link href={`/character/${characterObj.firebaseKey}`} passHref>
-          <Button variant="primary" className="m-2">VIEW</Button>
+          <Button variant="dark" className="m-2">VIEW</Button>
         </Link>
         <Link href={`/character/edit/${characterObj.firebaseKey}`} passHref>
-          <Button variant="info">EDIT</Button>
+          <Button variant="dark">EDIT</Button>
         </Link>
-        <Button variant="danger" onClick={deleteThisCharacter} className="m-2">
+        <Button variant="dark" onClick={deleteThisCharacter} className="m-2">
           DELETE
         </Button>
       </Card.Body>

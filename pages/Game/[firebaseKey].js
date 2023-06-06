@@ -21,18 +21,18 @@ export default function ViewGame() {
 
   return (
     <>
-      <div className="mt-5 d-flex flex-wrap">
-        <Link href={`/character/new/${gameDetails.firebaseKey}`} passHref>
-          <Button>Add A Character</Button>
-        </Link>
-        <div className="text-white ms-5 details">
-          <h2 className="card-title bold">{gameDetails.title}</h2>
-          <Card.Img src={gameDetails.image} alt={gameDetails.title} style={{ width: '300px' }} />
-          <p className="card-text bold">{gameDetails.genre}</p>
-          <p className="card-text bold">{gameDetails.console}</p>
-          <p className="card-text bold">{gameDetails.description}</p>
-        </div>
+      {/* <div className="mt-5 d-flex flex-wrap"> */}
+      <Link href={`/character/new/${gameDetails.firebaseKey}`} passHref>
+        <Button variant="dark">Add A Character</Button>
+      </Link>
+      <div className="text-white ms-5 details">
+        <h2 className="card-title bold">{gameDetails.title}</h2>
+        <Card.Img src={gameDetails.image} alt={gameDetails.title} style={{ width: '300px' }} />
+        <p className="card-text bold">{gameDetails.genre}</p>
+        <p className="card-text bold">{gameDetails.console}</p>
+        <p className="card-text bold">{gameDetails.description}</p>
       </div>
+      {/* </div> */}
       <div className="d-flex flex-wrap">
         {gameDetails?.characters?.map((character) => (
           <CharacterCard key={character.firebaseKey} characterObj={character} />
