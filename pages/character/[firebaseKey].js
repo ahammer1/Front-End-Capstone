@@ -33,7 +33,7 @@ export default function ViewCharacter() {
       </div>
       <div className="d-flex flex-wrap">
         {characterDetails?.comments?.map((comment) => (
-          <CommentCard key={Comment.firebaseKey} commentsObj={comment} />
+          <CommentCard key={Comment.firebaseKey} commentObj={comment} />
         ))}
       </div>
     </>

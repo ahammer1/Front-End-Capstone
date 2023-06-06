@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 
 function CommentCard({ commentObj }) {
   return (
@@ -10,7 +11,7 @@ function CommentCard({ commentObj }) {
         <Card.Text>
           {commentObj.description}
         </Card.Text>
-        <Card.Link href={`/comment/edit/${commentObj.firebaseKey}`}>Edit</Card.Link>
+        <Link href={`/comment/edit/${commentObj.firebaseKey}`}>Edit</Link>
       </Card.Body>
     </Card>
   );
