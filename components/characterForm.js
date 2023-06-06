@@ -36,7 +36,7 @@ function CharacterForm({ gameId, obj }) {
     if (obj.firebaseKey) {
       updateCharacter(formInput)
       // route to character..?
-        .then(() => router.push(`/Game/${obj.firebaseKey}`));
+        .then(() => router.push(`/character/${obj.firebaseKey}`));
     } else {
       const payload = { ...formInput, uid: user.uid, game_id: gameId };
       createCharacter(payload).then(({ name }) => {

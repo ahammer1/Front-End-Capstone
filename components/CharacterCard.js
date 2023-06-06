@@ -37,7 +37,11 @@ CharacterCard.propTypes = {
     image: PropTypes.string,
     firebaseKey: PropTypes.string,
   }).isRequired,
-  onUpdate: PropTypes.func.isRequired,
+  onUpdate: PropTypes.func,
+};
+
+CharacterCard.defaultProps = {
+  onUpdate: () => {},
 };
 
 export default CharacterCard;
