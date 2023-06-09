@@ -13,6 +13,10 @@ export default function ViewGame() {
 
   const { firebaseKey } = router.query;
 
+  const onUpdate = () => {
+    viewGameDetails(firebaseKey).then(setGameDetails);
+  };
+
   useEffect(() => {
     viewGameDetails(firebaseKey).then(setGameDetails);
   }, [firebaseKey]);
@@ -35,7 +39,7 @@ export default function ViewGame() {
       {/* </div> */}
       <div className="d-flex flex-wrap">
         {gameDetails?.characters?.map((character) => (
-          <CharacterCard key={character.firebaseKey} characterObj={character} />
+          <CharacterCard key={character.firebaseKey} characterObj={character} onUpdate={onUpdate} />
         ))}
       </div>
     </>
