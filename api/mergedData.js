@@ -1,6 +1,6 @@
-import { getCharacterGames, getSingleCharacter } from './CharacterData';
+import { getCharacterGames, getCharacters, getSingleCharacter } from './CharacterData';
 import { getCommentCharacters } from './commentData';
-import { getSingleGame } from './gameData';
+import { getGames, getSingleGame } from './gameData';
 
 const viewGameDetails = (gamesFirebaseKey) => new Promise((resolve, reject) => {
   Promise.all([getSingleGame(gamesFirebaseKey), getCharacterGames(gamesFirebaseKey)])
@@ -16,4 +16,43 @@ const viewCharacterDetails = (charactersFirebaseKey) => new Promise((resolve, re
     }).catch((error) => reject(error));
 });
 
-export { viewGameDetails, viewCharacterDetails };
+const globalSearch = (searchTerm, uid) => new Promise((resolve, reject) => {
+  Promise.all([getCharacters(uid), getGames(uid)])
+    .then(([characterArray, gameArray]) => {
+      const filteredCharacter = characterArray.filter((character) => {
+        if (character.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+          return character;
+        }
+        return '';
+      }).map((filterCharacter) => {
+        if (filterCharacter !== '') {
+          return {
+            title: filterCharacter.title,
+            firebaseKey: filterCharacter.firebaseKey,
+            type: 'character',
+          };
+        }
+        return '';
+      });
+
+      const filteredGames = gameArray.filter((game) => {
+        if (game.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+          return game;
+        }
+        return '';
+      }).map((filterGame) => {
+        if (filterGame !== '') {
+          return {
+            title: filterGame.title,
+            firebaseKey: filterGame.firebaseKey,
+            type: 'game',
+          };
+        }
+        return '';
+      });
+
+      resolve([...filteredCharacter, ...filteredGames]);
+    }).catch((error) => reject(error));
+});
+
+export { viewGameDetails, viewCharacterDetails, globalSearch };

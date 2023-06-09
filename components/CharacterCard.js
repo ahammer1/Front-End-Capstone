@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
-import { deleteSingleCharacter, getCharacters } from '../api/CharacterData';
+import { deleteSingleCharacter } from '../api/CharacterData';
+// import { viewGameDetails } from '../api/mergedData';
 
 function CharacterCard({ characterObj, onUpdate }) {
   const deleteThisCharacter = () => {
     if (window.confirm(`Delete ${characterObj.character_name} ?`)) {
-      deleteSingleCharacter(characterObj.firebaseKey).then(() => onUpdate(getCharacters));
+      deleteSingleCharacter(characterObj.firebaseKey).then(() => onUpdate());
     }
   };
 
