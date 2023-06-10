@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Link from 'next/link';
+// import Link from 'next/link';
 import { deleteGame } from '../api/gameData';
 
 function GameCard({ gameObj, onUpdate }) {
@@ -14,21 +14,17 @@ function GameCard({ gameObj, onUpdate }) {
 
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
-      <Card.Img variant="top" src={gameObj.image} alt={gameObj.title} style={{ height: '400px' }} />
+      <Card.Img variant="top" src={gameObj.image} alt={gameObj.title} style={{ height: '300px', objectFit: 'cover' }} />
       <Card.Body>
-        <Card.Title>{gameObj.title}</Card.Title>
-        <p className="card-text bold">{gameObj.genre}</p>
-        <p className="card-text bold">{gameObj.console}</p>
-        <p className="card-text bold">{gameObj.description}</p>
-        <Link href={`/Game/${gameObj.firebaseKey}`} passHref>
-          <Button variant="dark" className="m-2">VIEW</Button>
-        </Link>
-        <Link href={`/Game/Edit/${gameObj.firebaseKey}`} passHref>
-          <Button variant="dark">EDIT</Button>
-        </Link>
-        <Button variant="dark" onClick={deleteThisGame} className="m-2">
-          DELETE
-        </Button>
+        <Card.Title style={{ textAlign: 'center', marginBottom: '10px' }}>{gameObj.title}</Card.Title>
+        <p className="card-text bold" style={{ marginBottom: '5px' }}>{gameObj.genre}</p>
+        <p className="card-text bold" style={{ marginBottom: '5px' }}>{gameObj.console}</p>
+        <p className="card-text" style={{ marginBottom: '15px' }}>{gameObj.description}</p>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Button variant="dark" className="mr-2" href={`/Game/${gameObj.firebaseKey}`}>VIEW</Button>
+          <Button variant="dark" className="mr-2" href={`/Game/Edit/${gameObj.firebaseKey}`}>EDIT</Button>
+          <Button variant="dark" onClick={deleteThisGame}>DELETE</Button>
+        </div>
       </Card.Body>
     </Card>
   );
