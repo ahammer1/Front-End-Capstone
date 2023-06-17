@@ -6,7 +6,7 @@ import Link from 'next/link';
 function CommentCard({ commentObj }) {
   return (
     <Card style={{
-      width: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center', border: '1px solid #ccc', borderRadius: '5px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+      width: '50rem', display: 'flex', border: '1px solid #ccc', borderRadius: '5px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
     }}
     >
       <Card.Body>
