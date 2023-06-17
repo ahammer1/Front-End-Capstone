@@ -18,27 +18,31 @@ export default function ViewCharacter() {
 
   return (
     <>
+      <div className="text-center">
+        <Link href={`/comment/new/${characterDetails.firebaseKey}`} passHref>
+          <Button variant="dark">Add A Recap</Button>
+        </Link>
+      </div>
       <div style={{
-        display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh',
+        display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'auto',
       }}
       >
-        <div className="text-center">
-          <Link href={`/comment/new/${characterDetails.firebaseKey}`} passHref>
-            <Button variant="dark">Add A Log</Button>
-          </Link>
-        </div>
         <div className="text-white ms-5 details">
           <Card.Img src={characterDetails.image} alt={characterDetails.character_name} style={{ width: '300px' }} />
           <h5>{characterDetails.character_name}</h5>
         </div>
       </div>
-
-      <div className="d-flex flex-wrap">
-        <Stack gap={3}>
-          {characterDetails?.comments?.map((comment) => (
-            <CommentCard key={Comment.firebaseKey} commentObj={comment} />
-          ))}
-        </Stack>
+      <div style={{
+        display: 'flex', justifyContent: 'center', alignItems: 'center',
+      }}
+      >
+        <div className="d-flex flex-wrap">
+          <Stack gap={3}>
+            {characterDetails?.comments?.map((comment) => (
+              <CommentCard key={Comment.firebaseKey} commentObj={comment} />
+            ))}
+          </Stack>
+        </div>
       </div>
     </>
   );
