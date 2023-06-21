@@ -38,7 +38,7 @@ function GameForm({ obj }) {
     e.preventDefault();
     if (obj.firebaseKey) {
       updateGame(formInput)
-        .then(() => router.push(`/Game/${obj.firebaseKey}`));
+        .then(() => router.push(`/game/${obj.firebaseKey}`));
     } else {
       const payload = { ...formInput, uid: user.uid };
       createGame(payload).then(({ name }) => {

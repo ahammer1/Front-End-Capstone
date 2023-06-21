@@ -11,15 +11,17 @@ export default function SearchComponent() {
   const { searchTerm } = router.query;
 
   useEffect(() => {
-    globalSearch(searchTerm, user.uid).then((returnArray) => setSearchItems(returnArray));
+    globalSearch(searchTerm).then((returnArray) => setSearchItems(returnArray));
   }, [user, searchTerm]);
 
   return (
     <>
-      <h1>Search Results</h1>
-      {searchItems.map((item) => (
-        <SearchItem item={item} />
-      ))}
+      <div className="searchResults">
+        <h1>Search Results</h1>
+        {searchItems.map((item) => (
+          <SearchItem item={item} />
+        ))}
+      </div>
     </>
   );
 }
