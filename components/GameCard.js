@@ -37,10 +37,10 @@ function GameCard({ gameObj, onUpdate }) {
           {gameObj.description}
         </p>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <Button variant="dark" className="mr-2" href={`/Game/${gameObj.firebaseKey}`}>
+          <Button variant="dark" className="mr-2" href={`/game/${gameObj.firebaseKey}`}>
             VIEW
           </Button>
-          <Button variant="dark" className="mr-2" href={`/Game/Edit/${gameObj.firebaseKey}`}>
+          <Button variant="dark" className="mr-2" href={`/game/Edit/${gameObj.firebaseKey}`}>
             EDIT
           </Button>
           <Button variant="dark" onClick={deleteThisGame}>

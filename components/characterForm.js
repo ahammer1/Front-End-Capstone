@@ -42,7 +42,7 @@ function CharacterForm({ gameId, obj }) {
       createCharacter(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateCharacter(patchPayload).then(() => {
-          router.push(`/Game/${gameId}`);
+          router.push(`/game/${gameId}`);
         });
       });
     }

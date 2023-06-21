@@ -16,8 +16,8 @@ const viewCharacterDetails = (charactersFirebaseKey) => new Promise((resolve, re
     }).catch((error) => reject(error));
 });
 
-const globalSearch = (searchTerm, uid) => new Promise((resolve, reject) => {
-  Promise.all([getCharacters(uid), getGames(uid)])
+const globalSearch = (searchTerm) => new Promise((resolve, reject) => {
+  Promise.all([getCharacters(), getGames()])
     .then(([characterArray, gameArray]) => {
       const filteredCharacter = characterArray.filter((character) => {
         if (character.name.toLowerCase().includes(searchTerm.toLowerCase())) {

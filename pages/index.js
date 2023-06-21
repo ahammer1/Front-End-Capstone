@@ -41,7 +41,8 @@ import { useRouter } from 'next/router';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { Card } from 'react-bootstrap';
+import Link from 'next/link';
+import { Button, Card } from 'react-bootstrap';
 import GameCard from '../components/GameCard';
 import { getGames } from '../api/gameData';
 
@@ -49,11 +50,16 @@ const MyComponent = () => {
   const [games, setGames] = useState([]);
   const router = useRouter();
   const { query } = router;
+  const { firebaseKey } = router.query;
 
   const getAllTheGames = () => {
     getGames().then((data) => {
       setGames(data);
     });
+  };
+
+  const onUpdate = () => {
+    getAllTheGames(firebaseKey);
   };
 
   useEffect(() => {
@@ -69,15 +75,20 @@ const MyComponent = () => {
   };
 
   return (
-    <Slider {...styles}>
-      {games.map((game) => (
-        <div key={game.firebaseKey}>
-          <Card>
-            <GameCard gameObj={game} onUpdate={getGames} />
-          </Card>
-        </div>
-      ))}
-    </Slider>
+    <>
+      <Link href="/game/newGame" passHref>
+        <Button variant="dark">Add A Game</Button>
+      </Link>
+      <Slider {...styles}>
+        {games.map((game) => (
+          <div key={game.firebaseKey}>
+            <Card>
+              <GameCard gameObj={game} onUpdate={onUpdate} />
+            </Card>
+          </div>
+        ))}
+      </Slider>
+    </>
   );
 };
 

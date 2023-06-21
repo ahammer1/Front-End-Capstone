@@ -36,6 +36,7 @@ export default function NavBarAuth() {
 
             <button type="submit" onClick={(event) => onSearch(event)}>Search</button>
             <Button variant="dark" onClick={signOut}>Sign Out</Button>
+            {/* </Nav> */}
           </Nav>
         </Navbar.Collapse>
       </Container>
